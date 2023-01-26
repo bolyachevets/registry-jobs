@@ -39,8 +39,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-USER 1001
-
 # Set Python path
 ENV PYTHONPATH=/opt/app-root/src
 
