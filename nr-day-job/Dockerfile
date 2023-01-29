@@ -32,4 +32,4 @@ ENV PYTHONPATH=/opt/app-root
 
 EXPOSE 8080
 
-CMD [ "python", "/opt/app-root/nr_day_job.py" ]
+CMD [ "/bin/sh", "run.sh" ]
