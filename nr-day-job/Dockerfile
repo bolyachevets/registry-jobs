@@ -6,6 +6,8 @@ ARG BUILD_DATE="missing"
 
 ENV VCS_REF=${VCS_REF}
 ENV BUILD_DATE=${BUILD_DATE}
+ENV OC_VERSION "v3.11.0"
+ENV OC_RELEASE "openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit"
 
 LABEL org.label-schema.vcs-ref=${VCS_REF} \
   org.label-schema.build-date=${BUILD_DATE}
