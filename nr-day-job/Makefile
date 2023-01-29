@@ -39,22 +39,22 @@ clean-test: ## clean test files
 build-req: clean ## Upgrade requirements
 	test -f venv/bin/activate || python3.8 -m venv  $(CURRENT_ABS_DIR)/venv ;\
 	. venv/bin/activate ;\
-	pip3 install pip==20.1.1 ;\
-	pip3 install -Ur requirements/prod.txt ;\
-	pip3 freeze | sort > requirements.txt ;\
+	pip install pip==20.1.1 ;\
+	pip install -Ur requirements/prod.txt ;\
+	pip freeze | sort > requirements.txt ;\
 	cat requirements/bcregistry-libraries.txt >> requirements.txt ;\
-	pip3 install -Ur requirements/bcregistry-libraries.txt
+	pip install -Ur requirements/bcregistry-libraries.txt
 
 install: clean ## Install python virtrual environment
 	test -f venv/bin/activate || python3.8 -m venv  $(CURRENT_ABS_DIR)/venv ;\
 	. venv/bin/activate ;\
-	pip3 install pip==20.1.1 ;\
-	pip3 install -Ur requirements.txt
+	pip install pip==20.1.1 ;\
+	pip install -Ur requirements.txt
 
 install-dev: ## Install local application
 	. venv/bin/activate ; \
-	pip3 install -Ur requirements/dev.txt; \
-	pip3 install -e .
+	pip install -Ur requirements/dev.txt; \
+	pip install -e .
 
 #################################################################################
 # COMMANDS - CI                                                                 #
