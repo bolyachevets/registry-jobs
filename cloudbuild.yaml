@@ -1,6 +1,6 @@
 # https://cloud.google.com/build/docs/build-config-file-schema
 steps:
 - name: "gcr.io/cloud-builders/docker"
-  args: ["build","-t", "us-west2-docker.pkg.dev/${PROJECT_ID}/sre-repo/sre-nr-day-job-image:${SHORT_SHA}", "-t", "us-west2-docker.pkg.dev/${PROJECT_ID}/sre-repo/sre-nr-day-job-image:dev", "."]
+  args: ["build","-t", "${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY_REPO}/${_IMAGE}:${SHORT_SHA}", "-t", "us-west2-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY_REPO}/${_IMAGE}:${_TAG}", "."]
   dir: "nr-day-job"
-images: ["us-west2-docker.pkg.dev/${PROJECT_ID}/sre-repo/sre-nr-day-job-image:dev"]
+images: ["${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY_REPO}/${_IMAGE}:${_TAG}"]
