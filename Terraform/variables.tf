@@ -11,14 +11,20 @@ variable "environment" {
 
 variable "test_job" {
   type = object({
-    name      = string
-    image     = string
+    name                   = string
+    image                  = string
+    github_repository      = string
+    github_branch          = string
+    subdir                 = string
   })
   description = "GCP Test job"
 
   default = {
     name       = "sre-nr-day-job"
     image      = "sre-repo/sre-nr-day-job-image"
+    subdir     = "nr-day-job"
+    github_repository = "registry-jobs"
+    github_branch = "^main$"
   }
 }
 
@@ -63,14 +69,6 @@ variable "region" {
     default = "us-west2"
 }
 
-variable "github_repository" {
-    default = "registry-jobs"
-}
-
 variable "github_owner" {
     default = "bolyachevets"
-}
-
-variable "github_branch" {
-    default = "^main$"
 }

@@ -9,24 +9,14 @@ data "google_artifact_registry_repository" "job_repo" {
     location = var.region
 }
 
-  resource "google_cloudbuild_trigger" "manual-trigger" {
-    name        = "sre-repo"
-    location = "us-west2"
+resource "google_cloudbuild_trigger" "repo_trigger" {
+  name        = "sre-repo"
+  location = var.region
 
-  source_to_build {
-    uri       = "https://github.com/bolyachevets/registry-jobs"
-    ref       = "refs/heads/main"
-    repo_type = "GITHUB"
+  trigger_template {
+    branch_name = "main"
+    repo_name   = "${var.github_owner}/${var.test_job.github_repository}"
   }
 
-  build {
-    step {
-      name = "gcr.io/cloud-builders/docker"
-      args = ["build","-t", "${var.region}-docker.pkg.dev/$${PROJECT_ID}/${var.test_job.image}:$${SHORT_SHA}", "-t", "${var.region}-docker.pkg.dev/$${PROJECT_ID}/${var.test_job.image}:dev", "."]
-      dir = "nr-day-job"
-    }
-    artifacts {
-      images = ["${var.region}-docker.pkg.dev/$${PROJECT_ID}/${var.test_job.image}:dev"]
-    }
-  }
+  filename = "cloudbuild.yaml"
 }
