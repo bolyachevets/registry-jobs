@@ -18,5 +18,12 @@ resource "google_cloudbuild_trigger" "repo_trigger" {
     repo_name   = "${var.github_owner}/${var.test_job.github_repository}"
   }
 
+  substitutions = {
+    _LOCATION = var.region
+    _REGISTRY_REPO = var.test_job.registry_repo
+    _TAG = var.test_job.tag
+    _IMAGE = var.test_job.image
+  }
+
   filename = "cloudbuild.yaml"
 }

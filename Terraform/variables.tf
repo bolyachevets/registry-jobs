@@ -16,15 +16,19 @@ variable "test_job" {
     github_repository      = string
     github_branch          = string
     subdir                 = string
+    registry_repo          = string
+    tag                    = string
   })
   description = "GCP Test job"
 
   default = {
     name       = "sre-nr-day-job"
-    image      = "sre-repo/sre-nr-day-job-image"
-    subdir     = "nr-day-job"
+    image      = "sre-nr-day-job-image"
+    registry_repo = "sre-repo"
     github_repository = "registry-jobs"
     github_branch = "^main$"
+    subdir     = "nr-day-job"
+    tag        = "dev"
   }
 }
 

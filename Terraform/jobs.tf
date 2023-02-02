@@ -7,7 +7,7 @@ resource "google_cloud_run_v2_job" "test_gcp_job" {
   template {
     template {
       containers {
-        image = "${var.region}-docker.pkg.dev/${var.environment.project_id}/${var.test_job.image}:dev"
+        image = "${var.region}-docker.pkg.dev/${var.environment.project_id}/${var.test_job.registry_repo}/${var.test_job.image}:${var.test_job.tag}"
 
         env {
           name = "NATS_CLIENT_NAME"
