@@ -68,23 +68,43 @@ resource "google_cloud_run_v2_job" "test_gcp_job" {
           name = "DATABASE_PORT"
           value = var.db_connection.port
         }
-        env {
-          name = "SECRET_KEY"
-          value = local.secret_key
-        }
+
         env {
           name = "DATABASE_USERNAME"
-          value = local.db_username
+          value_source {
+            secret_key_ref {
+              secret = google_secret_manager_secret_version.database_username_version.secret
+              version = "1"
+            }
+          }
         }
         env {
           name = "DATABASE_PASSWORD"
-          value = local.db_password
+          value_source {
+            secret_key_ref {
+              secret = google_secret_manager_secret_version.database_password_version.secret
+              version = "1"
+            }
+          }
         }
         env {
           name = "DATABASE_NAME"
-          value = local.db_name
+          value_source {
+            secret_key_ref {
+              secret = google_secret_manager_secret_version.database_name_version.secret
+              version = "1"
+            }
+          }
         }
-
+        env {
+          name = "SECRET_KEY"
+          value_source {
+            secret_key_ref {
+              secret = google_secret_manager_secret_version.secret_key_version.secret
+              version = "1"
+            }
+          }
+        }
         env {
           name = "OC_TOKEN"
           value_source {
