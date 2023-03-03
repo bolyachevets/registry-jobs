@@ -1,5 +1,7 @@
-# gcp github repo needs to be created (i.e. seeded)
-# first image needs to be seeded as well
+# 1. gcp github repo needs to be created (i.e. seeded) see:
+# https://source.cloud.google.com/repo/connect
+# cloud build triggers then show up here: https://console.cloud.google.com/cloud-build/triggers
+# 2. first image needs to be seeded as well
 # cd /home/andriy_bolyachevets/cloudshell_open/
 # git clone https://github.com/bolyachevets/registry-jobs
 # gcloud builds submit --region=us-west2 --tag us-west2-docker.pkg.dev/c4hnrd-dev/sre-repo/sre-nr-day-job-image:dev
@@ -15,7 +17,7 @@ resource "google_cloudbuild_trigger" "repo_trigger" {
 
   trigger_template {
     branch_name = "main"
-    repo_name   = "${var.github_owner}/${var.test_job.github_repository}"
+    repo_name   = "github_${var.github_owner}_${var.test_job.github_repository}"
   }
 
   substitutions = {
