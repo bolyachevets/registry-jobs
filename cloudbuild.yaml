@@ -1,7 +1,4 @@
 steps:
-  - name: 'ubuntu'
-    args: ['bash', '-c', '$SHORT_SHA > _SHORT_SHA']
-
   - name: 'gcr.io/cloud-builders/git'
     entrypoint: /bin/bash
     args:
