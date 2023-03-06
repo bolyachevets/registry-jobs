@@ -19,7 +19,7 @@ import os
 def notify_api_run():
     client = os.environ['NOTIFY_CLIENT']
     secret = os.environ['NOTIFY_CLIENT_SECRET']
-    kc_base_url = os.environ['KC_BASE_URL']
+    kc_url = os.environ['KC_URL']
     notify_base_url = os.environ['NOTIFY_API_URL']
     payload = "grant_type=client_credentials"
     auth_str = client + ":" + secret
@@ -29,8 +29,7 @@ def notify_api_run():
         'Authorization': f'Basic {basic_hash}'
     }
 
-    url = kc_base_url + "/auth/realms/bcregistry/protocol/openid-connect/token"
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", kc_url, headers=headers, data=payload)
     token = response.json()['access_token']
 
     headers = {
