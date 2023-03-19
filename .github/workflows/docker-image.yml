@@ -24,7 +24,9 @@ jobs:
     - run: |
         set -x
         docker version
-        docker run --rm hello-world
+        docker ps
+        docker context ls
+        ls /var/run/
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
