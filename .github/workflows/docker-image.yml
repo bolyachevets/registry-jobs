@@ -18,7 +18,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        ref: tools
+        ref: tools     
+    - uses: docker-practice/actions-setup-docker@master
+      timeout-minutes: 12
+    - run: |
+        set -x
+        docker version
+        docker run --rm hello-world
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
