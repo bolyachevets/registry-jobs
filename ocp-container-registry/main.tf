@@ -28,3 +28,8 @@ provider "docker" {
 resource "docker_image" "ubuntu" {
   name = "ubuntu:latest"
 }
+
+variable "GOOGLE_CREDENTIALS" {
+  type = string
+  default = ""
+}
