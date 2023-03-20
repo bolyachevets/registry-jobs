@@ -18,7 +18,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: tools
-    - run: 'echo "$GCP_REGISTRY_TOKEN" > docker.json'
+    - run: touch docker.json && echo "$GCP_REGISTRY_TOKEN" > docker.json && pwd && ls
       shell: bash
       working-directory: ${{ github.event.inputs.gcp_job }}
       env:
@@ -34,7 +34,7 @@ jobs:
       run: terraform plan -input=false
       working-directory: ${{ github.event.inputs.gcp_job }}
       # Build or change infrastructure according to Terraform configuration files
-    - run: cat docker.json
+    - run: pwd && ls
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
       working-directory: ${{ github.event.inputs.gcp_job }}
