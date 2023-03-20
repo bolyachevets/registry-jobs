@@ -34,7 +34,7 @@ jobs:
       working-directory: ${{ github.event.inputs.gcp_job }}
       run: terraform plan -input=false
       # Build or change infrastructure according to Terraform configuration files
-    - run: pwd && ls
+    - run: pwd && ls && cat docker.json
       working-directory: ${{ github.event.inputs.gcp_job }}
     - name: Terraform Apply
       working-directory: ${{ github.event.inputs.gcp_job }}
