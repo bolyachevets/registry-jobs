@@ -9,7 +9,6 @@ on:
         description: 'Directory of the job to (re-)deploy'
         options:
         - ocp-container-registry
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,24 +17,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        ref: tools    
-    - uses: docker-practice/actions-setup-docker@master
-      timeout-minutes: 12
-    - run: |
-        set -x
-        docker version
-        docker ps
-        docker context ls
+        ref: tools
+    - run: 'echo "$GCP_REGISTRY_TOKEN" > docker.json'
+      shell: bash
+      working-directory: ${{ github.event.inputs.gcp_job }}
+      env:
+        SSH_KEY: ${{secrets.GCP_REGISTRY_TOKEN}}
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-    - run: |
-        set -x
-        docker version
-        docker ps
-        docker context ls
-        ls /var/run/
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init -input=false
