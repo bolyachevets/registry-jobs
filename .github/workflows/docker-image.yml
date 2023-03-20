@@ -27,14 +27,15 @@ jobs:
       uses: hashicorp/setup-terraform@v1
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init -input=false
       working-directory: ${{ github.event.inputs.gcp_job }}
+      run: terraform init -input=false
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false
       working-directory: ${{ github.event.inputs.gcp_job }}
+      run: terraform plan -input=false
       # Build or change infrastructure according to Terraform configuration files
     - run: pwd && ls
-    - name: Terraform Apply
-      run: terraform apply -auto-approve -input=false
       working-directory: ${{ github.event.inputs.gcp_job }}
+    - name: Terraform Apply
+      working-directory: ${{ github.event.inputs.gcp_job }}
+      run: terraform apply -auto-approve -input=false
