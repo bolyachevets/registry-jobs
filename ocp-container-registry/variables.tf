@@ -21,6 +21,13 @@ variable "images" {
   description = "images to maintain"
 
   default = [
-    "ubuntu:latest"
+    "ubuntu:latest",
+    "tiangolo/uvicorn-gunicorn-fastapi:python3.8",
+    "nginx:1.18.0",
+    "bitnami/minio",
+    "nats-streaming:0.21.2",
+    "node:16.14.2",
+    "node:14.15.1",
+    "minio/minio:RELEASE.2018-07-13T00-09-07Z"
   ]
 }
